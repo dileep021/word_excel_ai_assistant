@@ -65,7 +65,7 @@ npm run dev
 
 This will start:
 - Frontend (webpack-dev-server) on https://localhost:55030
-- Backend (Express server) on http://localhost:3001
+- Backend (Express server) on http://localhost:55031
 
 ### Load the add-in in Office
 
@@ -180,7 +180,7 @@ See `.env.example` for all available configuration options:
 
 - `OPENAI_API_KEY` - Your OpenAI API key (required)
 - `OPENAI_MODEL` - GPT model to use (default: gpt-4-turbo-preview)
-- `PORT` - Backend server port (default: 3001)
+- `PORT` - Backend server port (default: 55031)
 - `RATE_LIMIT_REQUESTS` - Max requests per window (default: 100)
 - `MAX_FILE_SIZE` - Max upload size in bytes (default: 10MB)
 

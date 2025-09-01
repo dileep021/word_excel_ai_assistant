@@ -16,7 +16,7 @@ const documentRoutes = require('./routes/documents');
 const { authenticate, rateLimiter } = require('./middleware/auth');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 55031;
 
 // Middleware
 app.use(cors({
