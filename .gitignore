@@ -1,0 +1,114 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Production build
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Office Add-in specific
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+# SSL Certificates
+*.pem
+*.crt
+*.key
+.office-addin-dev-certs/
+
+# Upload directory
+server/uploads/
+
+# Test coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Debug files
+*.pid
+*.seed
+*.pid.lock
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+
+# Gatsby files
+.cache/
+public/
+
+# Webpack
+.webpack/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+.claude/
+
+# Lock files (optional - uncomment if you don't want to track lock files)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
