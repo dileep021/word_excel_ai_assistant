@@ -18,7 +18,7 @@ export class OpenAIService {
       headers: {
         'Content-Type': 'application/json',
       },
-      timeout: 30000,
+      timeout: 550300,
     });
 
     this.api.interceptors.response.use(

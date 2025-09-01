@@ -355,7 +355,7 @@ npm run debug:excel
 
 ```env
 # Server Configuration
-PORT=3000
+PORT=55030
 NODE_ENV=development
 
 # OpenAI Configuration
@@ -363,7 +363,7 @@ OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=gpt-4-turbo-preview
 
 # Office Add-in Configuration
-OFFICE_ADDIN_URL=https://localhost:3000
+OFFICE_ADDIN_URL=https://localhost:55030
 
 # Security
 JWT_SECRET=your_secret_here

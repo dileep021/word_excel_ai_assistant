@@ -65,7 +65,7 @@ const requestLogger = (req, res, next) => {
 // CORS middleware configuration
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = (process.env.CORS_ORIGIN || 'https://localhost:3000').split(',');
+    const allowedOrigins = (process.env.CORS_ORIGIN || 'https://localhost:55030').split(',');
     
     // Allow requests with no origin (e.g., mobile apps, Postman)
     if (!origin) return callback(null, true);

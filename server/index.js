@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'https://localhost:3000',
+  origin: process.env.CORS_ORIGIN || 'https://localhost:55030',
   credentials: true
 }));
 
@@ -117,5 +117,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔗 CORS origin: ${process.env.CORS_ORIGIN || 'https://localhost:3000'}`);
+  console.log(`🔗 CORS origin: ${process.env.CORS_ORIGIN || 'https://localhost:55030'}`);
 });

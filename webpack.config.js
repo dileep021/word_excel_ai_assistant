@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
@@ -45,6 +46,9 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || 'http://localhost:3001/api'),
+      }),
       new HtmlWebpackPlugin({
         template: './src/taskpane/index.html',
         filename: 'taskpane.html',
@@ -61,7 +65,7 @@ module.exports = (env, argv) => {
       }),
     ],
     devServer: {
-      port: 3000,
+      port: 55030,
       https: true,
       headers: {
         'Access-Control-Allow-Origin': '*',

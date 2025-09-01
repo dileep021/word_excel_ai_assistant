@@ -19,7 +19,7 @@ export class OfficeService {
         this.context = {
           isWord: info.host === Office.HostType.Word,
           isExcel: info.host === Office.HostType.Excel,
-          version: info.version || '',
+          version: '',
           platform: info.platform === Office.PlatformType.PC ? 'PC' : 
                    info.platform === Office.PlatformType.Mac ? 'Mac' : 'Web'
         };
@@ -36,29 +36,36 @@ export class OfficeService {
   }
 
   private initializeWordHandlers(): void {
-    Word.run(async (context) => {
-      context.document.onSelectionChanged.add(() => {
-        this.handleSelectionChange();
-      });
-      await context.sync();
-    }).catch(error => console.error('Failed to initialize Word handlers:', error));
+    // Word doesn't have a direct onSelectionChanged event in all versions
+    // We can use a polling approach or manual triggers
+    // For simplicity, we'll trigger on user actions
+    setInterval(async () => {
+      if (this.selectionChangeHandler) {
+        try {
+          await this.handleSelectionChange();
+        } catch (error) {
+          // Silently ignore errors during polling
+        }
+      }
+    }, 2000); // Check every 2 seconds
   }
 
   private initializeExcelHandlers(): void {
     Excel.run(async (context) => {
       const worksheet = context.workbook.worksheets.getActiveWorksheet();
-      worksheet.onSelectionChanged.add(() => {
-        this.handleSelectionChange();
+      worksheet.onSelectionChanged.add(async () => {
+        await this.handleSelectionChange();
       });
       await context.sync();
     }).catch(error => console.error('Failed to initialize Excel handlers:', error));
   }
 
-  private async handleSelectionChange(): Promise<void> {
-    const selectedText = await this.getSelectedText();
-    if (this.selectionChangeHandler) {
-      this.selectionChangeHandler(selectedText);
-    }
+  private handleSelectionChange(): Promise<void> {
+    return this.getSelectedText().then(selectedText => {
+      if (this.selectionChangeHandler) {
+        this.selectionChangeHandler(selectedText);
+      }
+    });
   }
 
   onSelectionChange(handler: (selection: string) => void): void {
@@ -226,7 +233,7 @@ export class OfficeService {
     if (this.context.isWord) {
       return Word.run(async (context) => {
         const body = context.document.body;
-        body.font.highlightColor = null;
+        body.font.highlightColor = '#FFFFFF';
         await context.sync();
       });
     }
