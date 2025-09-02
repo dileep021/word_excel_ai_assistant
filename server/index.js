@@ -6,8 +6,8 @@ const path = require('path');
 const fs = require('fs');
 const https = require('https');
 
-// Load environment variables
-dotenv.config();
+// Load environment variables (.env overrides system env)
+dotenv.config({ override: true });
 
 // Import routes
 const aiRoutes = require('./routes/ai');

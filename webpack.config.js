@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const fs = require('fs');
-require('dotenv').config();
+require('dotenv').config({ override: true });
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';

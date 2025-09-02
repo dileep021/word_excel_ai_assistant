@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ override: true });
 
 const templatePath = path.join(__dirname, '../manifest.template.xml');
 const outputPath = path.join(__dirname, '../manifest.xml');
