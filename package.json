@@ -4,13 +4,14 @@
   "description": "AI Assistant Add-in for Microsoft Word and Excel",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "generate-manifest": "node scripts/generate-manifest.js",
+    "dev": "npm run generate-manifest && concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "nodemon server/index.js",
     "dev:client": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "npm run generate-manifest && webpack --mode production",
     "start": "node server/index.js",
-    "start:office": "office-addin-debugging start manifest.xml",
-    "validate": "office-addin-manifest validate manifest.xml",
+    "start:office": "npm run generate-manifest && office-addin-debugging start manifest.xml",
+    "validate": "npm run generate-manifest && office-addin-manifest validate manifest.xml",
     "lint": "eslint src/**/*.{ts,tsx}"
   },
   "dependencies": {

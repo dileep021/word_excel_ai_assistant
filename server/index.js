@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const https = require('https');
 
 // Load environment variables
 dotenv.config();
@@ -16,11 +17,11 @@ const documentRoutes = require('./routes/documents');
 const { authenticate, rateLimiter } = require('./middleware/auth');
 
 const app = express();
-const PORT = process.env.PORT || 55031;
+const PORT = process.env.SERVER_PORT || 55031;
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'https://localhost:55030',
+  origin: process.env.CORS_ORIGIN,
   credentials: true
 }));
 
@@ -113,9 +114,16 @@ app.use((req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+// SSL configuration
+const sslOptions = {
+  key: fs.readFileSync(path.join(__dirname, '../src/ssl/ssl.key')),
+  cert: fs.readFileSync(path.join(__dirname, '../src/ssl/ssl.crt'))
+};
+
+// Start HTTPS server
+https.createServer(sslOptions, app).listen(PORT, () => {
+  console.log(`🚀 HTTPS Server running on port ${PORT}`);
   console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔗 CORS origin: ${process.env.CORS_ORIGIN || 'https://localhost:55030'}`);
+  console.log(`🔗 CORS origin: ${process.env.CORS_ORIGIN}`);
+  console.log(`🔒 SSL certificates loaded from src/ssl/`);
 });

@@ -363,7 +363,7 @@ OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=gpt-4-turbo-preview
 
 # Office Add-in Configuration
-OFFICE_ADDIN_URL=https://localhost:55030
+OFFICE_ADDIN_URL=https://dbx.paperentry.ai:55030
 
 # Security
 JWT_SECRET=your_secret_here

@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+const fs = require('fs');
+require('dotenv').config();
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
@@ -47,7 +49,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || 'http://localhost:55031/api'),
+        'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
       }),
       new HtmlWebpackPlugin({
         template: './src/taskpane/index.html',
@@ -65,8 +67,15 @@ module.exports = (env, argv) => {
       }),
     ],
     devServer: {
-      port: 55030,
-      https: true,
+      port: process.env.CLIENT_PORT || 55030,
+      server: {
+        type: 'https',
+        options: {
+          key: fs.readFileSync(path.join(__dirname, 'src/ssl/ssl.key')),
+          cert: fs.readFileSync(path.join(__dirname, 'src/ssl/ssl.crt'))
+        }
+      },
+      allowedHosts: [process.env.HOSTNAME || 'localhost', 'localhost'],
       headers: {
         'Access-Control-Allow-Origin': '*',
       },

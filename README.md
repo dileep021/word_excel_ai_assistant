@@ -64,7 +64,7 @@ npm run dev
 ```
 
 This will start:
-- Frontend (webpack-dev-server) on https://localhost:55030
+- Frontend (webpack-dev-server) on https://dbx.paperentry.ai:55030
 - Backend (Express server) on http://localhost:55031
 
 ### Load the add-in in Office
